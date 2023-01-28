@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link href="../dist//output.css" rel="stylesheet">
+    <style>
+        .active{
+            background-color: rgb(115, 215, 115);
+        }
+    </style>
+</head>
+<body>
+    <p class="text-center text-2xl font-semibold">Virtual Keyboard</p>
+    <div class="mt-10">
+        <input type="text" placeholder="Enter your text..." value="" class="w-full h-10 text-white bg-[#1A2029]" id="maindisplay">
+            <div id="parent" class="border-2 border-black overflow-hidden">
+                <div class="row1 flex justify-between bg-black pt-1">
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">q</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">w</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">e</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">r</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">t</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">y</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">u</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">i</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">o</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">p</button>
+                </div>
+                <div class="row2 flex justify-between bg-black py-1">
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">a</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">s</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">d</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">f</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">g</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">h</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">j</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">k</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">l</button>
+                    <button class="backspace w-10 h-10 bg-[#1A2029] text-white shadow-md">
+                        DEL
+                    </button>
+                </div>
+                <div class="row3 flex justify-between bg-black">
+                    <button class="caps w-10 h-10 bg-[#1A2029] text-white shadow-md">CAPS</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">z</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">x</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">c</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">v</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">b</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">n</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">m</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">.</button>
+                    <button class="w-10 h-10 bg-[#1A2029] text-white shadow-md">?</button>
+                </div>
+                <div class="row4 py-2 px-1 bg-black">
+                    <button class="w-full space bg-[#1A2029] text-white py-1 shadow-lg">SPACE</button>
+                </div>
+            <div>
+    </div>
+    <script>
+        const keys = document.querySelectorAll('button');
+        const maindisplay =  document.getElementById('maindisplay');
+        keys.forEach((key) => {
+            key.addEventListener('click',(e)=>{
+                if(e.target.classList.contains('caps')){
+                    e.target.classList.toggle('active');
+                    if(e.target.classList.contains('active')){
+                        keys.forEach((key) => {
+                            key.innerHTML = key.innerHTML.toUpperCase();
+                        })
+                    }
+                    else{
+                        keys.forEach((key) => {
+                            key.innerHTML = key.innerHTML.toLowerCase();
+                        })
+                    }
+                    console.log(e.target);
+                }
+                else if(e.target.classList.contains('backspace')){
+                    var string = maindisplay.value;
+                    maindisplay.value = string.substring(0,string.length-1);
+                }
+                else {
+                    if(e.target.classList.contains('space')){
+                        maindisplay.value = maindisplay.value + ` `;
+                    }
+                    else{
+                        maindisplay.value = maindisplay.value + e.target.innerHTML;
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>
